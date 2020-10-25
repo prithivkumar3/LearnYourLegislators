@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
+const String filePath = "know_your_rep/politicians.csv";
 void main() {
+  int dem = 0;
+  int rep = 0;
+  var guyArray =
   runApp(MyApp());
 }
 
@@ -10,8 +14,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startup Name Generator',
-      home: RandomWords(),
+      title: 'Know Your Representatives',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Know Your Representatives'),
+        ),
+        body: const Center(
+          child: const Text('Insert pol image here'),
+        ),
+      ),
     );
     // return MaterialApp(
     //   title: 'Flutter Demo',
@@ -36,52 +47,64 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class Guy {
+  String name;
+  int party; //0 is nonpartisan, 1 is democrat, 2 is republican
+  var policies;
 
-class RandomWords extends StatefulWidget {
-  @override
-  _RandomWordsState createState() => _RandomWordsState();
-}
-
-class _RandomWordsState extends State<RandomWords> {
-  final List<WordPair> _suggestions = <WordPair>[];
-  final TextStyle _biggerFont = const TextStyle(fontSize: 18);
-  @override
-  Widget build(BuildContext context) {
-    //final wordPair = WordPair.random();
-    //return Text(wordPair.asPascalCase);
-    return Scaffold (
-      appBar: AppBar(
-        title: Text('Startup Name Generator'),
-      ),
-      body: _buildSuggestions(),
-    );
-  }
-
-  Widget _buildSuggestions() {
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemBuilder: (BuildContext _context, int i) {
-        if (i.isOdd) {
-          return Divider();
-        }
-        final int index = i ~/ 2;
-        if (index >= _suggestions.length) {
-          _suggestions.addAll(generateWordPairs().take(10));
-        }
-        return _buildRow(_suggestions[index]);
-      }
-    );
-  }
-
-  Widget _buildRow(WordPair pair) {
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ),
-    );
+  Guy(String pol) {
+    var array = pol.split(",");
+    policies[0] = array[2];
+    policies[1] = array[3];
+    policies[2] = array[4];
   }
 }
+
+// class RandomWords extends StatefulWidget {
+//   @override
+//   _RandomWordsState createState() => _RandomWordsState();
+// }
+//
+// class _RandomWordsState extends State<RandomWords> {
+//   final List<WordPair> _suggestions = <WordPair>[];
+//   final TextStyle _biggerFont = const TextStyle(fontSize: 18);
+//   @override
+//   Widget build(BuildContext context) {
+//     //final wordPair = WordPair.random();
+//     //return Text(wordPair.asPascalCase);
+//     return Scaffold (
+//       appBar: AppBar(
+//         title: Text('Startup Name Generator'),
+//       ),
+//       body: _buildSuggestions(),
+//     );
+//   }
+//
+//   Widget _buildSuggestions() {
+//     return ListView.builder(
+//       padding: const EdgeInsets.all(16),
+//       itemBuilder: (BuildContext _context, int i) {
+//         if (i.isOdd) {
+//           return Divider();
+//         }
+//         final int index = i ~/ 2;
+//         if (index >= _suggestions.length) {
+//           _suggestions.addAll(generateWordPairs().take(10));
+//         }
+//         return _buildRow(_suggestions[index]);
+//       }
+//     );
+//   }
+//
+//   Widget _buildRow(WordPair pair) {
+//     return ListTile(
+//       title: Text(
+//         pair.asPascalCase,
+//         style: _biggerFont,
+//       ),
+//     );
+//   }
+// }
 
 
 
